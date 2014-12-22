@@ -1,15 +1,15 @@
 // Author: Dinesh Appavoo (dineshappavoo) <dinesha.cit@gmail.com>
 
 // Write a method to replace all spaces in a string with ‘%20’
-
-// Algorithm IS_ROTATED_STRING(str): 
-// 1.Get the input strings str1 and str2
-// 2.Find the length of the strings
-// 3.if len(str1) != len(str2) then return false
-// 4.get the concatenated string concatStr=str1+str1
-// 5.if substr(concatStr,str2) then return true
-//		else return false
-
+/*
+ Algorithm IS_ROTATED_STRING(str): 
+ 1.Get the input strings str1 and str2
+ 2.Find the length of the strings
+ 3.if len(str1) != len(str2) then return false
+ 4.get the concatenated string concatStr=str1+str1
+ 5.if substr(concatStr,str2) then return true
+		else return false
+*/
 
 package main
 

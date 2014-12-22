@@ -1,18 +1,20 @@
 // Author: Dinesh Appavoo (dineshappavoo) <dinesha.cit@gmail.com>
 
-// For ASCII
-// Algorithm IS_PERMUTATION(str1, str2): 
-// 1.Get the input strings str1, str2
-// 2.Find the length of the strings
-// 3.If len(str1)!=len(str2) then return false
-// 4.create a map of type [string]int
-// 5.for i from 1 to len(str1)
-//		increment the count by 1 in the map
-// 6.for j from 1 to len(str2)
-//		decrement the count by 1
-// 7. Itreate throught the map
-//		if any value is not equal to zero then return false
-//	8.return true
+/*
+ For ASCII
+ Algorithm IS_PERMUTATION(str1, str2): 
+ 1.Get the input strings str1, str2
+ 2.Find the length of the strings
+ 3.If len(str1)!=len(str2) then return false
+ 4.create a map of type [string]int
+ 5.for i from 1 to len(str1)
+		increment the count by 1 in the map
+ 6.for j from 1 to len(str2)
+		decrement the count by 1
+ 7. Itreate throught the map
+		if any value is not equal to zero then return false
+	8.return true
+*/
 
 package main
 

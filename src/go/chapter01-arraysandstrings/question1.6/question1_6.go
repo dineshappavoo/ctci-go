@@ -1,21 +1,21 @@
 // Author: Dinesh Appavoo (dineshappavoo) <dinesha.cit@gmail.com>
 
 // Write a method to replace all spaces in a string with ‘%20’
-
-// Algorithm COMPRESS_STRING(str): 
-// 1.Get the input string str
-// 2.Find the length of the string
-// 3.Get the 0th element as lastChar
-// 4.Initialize the count as 1
-// 5.for i from 1 to len(str)
-//		currentChar=str[i]
-//		if(currentChar!=lastChar) then append lastChar and count to resultString
-//		else 
-//			count++
-//			lastChar=currentChar
-// 6.Finally append the lastChar and count to resultString - [edge case]
-// 7.return resultString
-
+/*
+ Algorithm COMPRESS_STRING(str): 
+ 1.Get the input string str
+ 2.Find the length of the string
+ 3.Get the 0th element as lastChar
+ 4.Initialize the count as 1
+ 5.for i from 1 to len(str)
+		currentChar=str[i]
+		if(currentChar!=lastChar) then append lastChar and count to resultString
+		else 
+			count++
+			lastChar=currentChar
+ 6.Finally append the lastChar and count to resultString - [edge case]
+ 7.return resultString
+*/
 package main
 
 import (

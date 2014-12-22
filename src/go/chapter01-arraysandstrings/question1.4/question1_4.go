@@ -2,14 +2,15 @@
 
 // Write a method to replace all spaces in a string with ‘%20’
 
-// Algorithm REPLACE_SPACE_BY_STRING(str): 
-// 1.Get the input string str
-// 2.Find the length of the string
-// 3.Identify the total number of spaces in the string
-// 4.Create an array of size (len(str)+(2*spaceCount))
-// 5.Copy each character to the array . When you find ' ' copy '%20' to the array instead ' '
-// 6.return the array
-
+/*
+ Algorithm REPLACE_SPACE_BY_STRING(str): 
+ 1.Get the input string str
+ 2.Find the length of the string
+ 3.Identify the total number of spaces in the string
+ 4.Create an array of size (len(str)+(2*spaceCount))
+ 5.Copy each character to the array . When you find ' ' copy '%20' to the array instead ' '
+ 6.return the array
+*/
 package main
 
 import (
