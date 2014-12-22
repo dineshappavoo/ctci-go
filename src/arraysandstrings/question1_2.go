@@ -1,6 +1,3 @@
-// Copyright (c) 2014 ICRL
-
-// See the file LICENSE for copying permission.
 // Author: Dinesh Appavoo (dineshappavoo) <dinesha.cit@gmail.com>
 
 // Algorithm:

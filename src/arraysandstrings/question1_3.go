@@ -1,10 +1,7 @@
-// Copyright (c) 2014 ICRL
-
-// See the file LICENSE for copying permission.
 // Author: Dinesh Appavoo (dineshappavoo) <dinesha.cit@gmail.com>
 
 // For ASCII
-// Algorithm(str1, str2): 
+// Algorithm IS_PERMUTATION(str1, str2): 
 // 1.Get the input strings str1, str2
 // 2.Find the length of the strings
 // 3.If len(str1)!=len(str2) then return false
