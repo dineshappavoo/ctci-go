@@ -2,19 +2,19 @@
 
 // Write a method to replace all spaces in a string with ‘%20’
 /*
- Algorithm COMPRESS_STRING(str): 
- 1.Get the input string str
- 2.Find the length of the string
- 3.Get the 0th element as lastChar
- 4.Initialize the count as 1
- 5.for i from 1 to len(str)
-		currentChar=str[i]
-		if(currentChar!=lastChar) then append lastChar and count to resultString
-		else 
-			count++
-			lastChar=currentChar
- 6.Finally append the lastChar and count to resultString - [edge case]
- 7.return resultString
+ Algorithm ROTATE_ARRAY(matrix, n): 
+ 1.Get the input array matrix and size n
+ 2.for layer from 1 to n/2
+		first = layer
+		last = n-layer-1
+		for i=first to last
+			offset = i-first
+			top = matrix[first][i]
+			matrix[first][i] = matrix[last-offset][first]
+			matrix[last-offset][first] = matrix[last][last-offset]
+			matrix[last][last-offset] = matrix[i][last]
+			matrix[i][last] = top
+3. return matrix
 */
 package main
 
@@ -22,44 +22,27 @@ import (
 	"fmt"
 )
 
-var sMap map[string]int
 //Main function
 func main() {
-	str := " Helo Worl d! "
-	fmt.Println("Input String :", str)
-	fmt.Println(compressString(str))
+	matrix := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
+	fmt.Println("Input String :", matrix)
+	fmt.Println(rotateMatrix(matrix, len(matrix)))
 }
-//Function to compress the string
-func compressString(str string) []string {
-	length := len(str)
-	if str == "" {
-		return
-	}
-	var count int = 1
-	lastChar := string([]rune(str)[0])
-	for i := 1; i < length; i++ {
-		ch := string([]rune(str)[i])
-		if ch == " " {
-			count++
-		}
-	}
-	newLength := length + (2 * count)
-	var sArr = make([]string, newLength)
-	j := 0
-	for i := 0; i < length; i++ {
-		ch := string([]rune(str)[i])
 
-		if ch == " " {
-			sArr[j] = "%"
-			j = j + 1
-			sArr[j] = "2"
-			j = j + 1
-			sArr[j] = "0"
-			j = j + 1
-		} else {
-			sArr[j] = ch
-			j = j + 1
+//Function to rotate the matrix
+func rotateMatrix(matrix [][]int, n int) [][]int {
+	for layer := 0; layer < n/2;layer++ {
+		first := layer
+		last := n - 1 - layer
+		for i := first; i < last;i++ {
+			offset := i - first
+			top := matrix[first][i]
+			matrix[first][i] = matrix[last-offset][first]
+			matrix[last-offset][first] = matrix[last][last-offset]
+			matrix[last][last-offset] = matrix[i][last]
+			matrix[i][last] = top
 		}
 	}
-	return sArr
+
+	return matrix
 }

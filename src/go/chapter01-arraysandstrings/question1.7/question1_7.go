@@ -1,52 +1,59 @@
 // Author: Dinesh Appavoo (dineshappavoo) <dinesha.cit@gmail.com>
-
-// Write a method to replace all spaces in a string with ‘%20’
 /*
- Algorithm IS_ROTATED_STRING(str): 
- 1.Get the input strings str1 and str2
- 2.Find the length of the strings
- 3.if len(str1) != len(str2) then return false
- 4.get the concatenated string concatStr=str1+str1
- 5.if substr(concatStr,str2) then return true
-		else return false
+ Algorithm MAKE_COL_ROW_NULL(arr): 
+ 1.Get the input array arr
+ 2.calculate row length and column length as [rowLen, colLen]
+ 3.Initialize two boolean arrays for rwo and column
+ 4.Identify the elements which has the value 0 in the input array and update the boolean arrays
+ 	for i from 1 to rowLen
+ 		for j from 1 to colLen
+ 			if arr[i][j]==0
+ 				rowLen[i] = true
+ 				colLen[j] = true
+
+ 5.for i from 1 to rowLen
+ 		for j from 1 to colLen
+ 			if rowLen[i] or colLen[j]
+ 				arr[i][j] = 0
+ 6.return arr
 */
 
 package main
 
 import (
 	"fmt"
-	"strings"
 )
 
 //Main function
 func main() {
-	str1 := "waterbottle"
-	str2 := "erbottlewat"
-	
-	fmt.Println("Input String :", str1,str2)
-	fmt.Println(isRotatedString(str1, str2))
+	arr:=[][]int{{1,2,3},{0,4,5},{6,0,8}}
+	fmt.Println("Input String :", 	arr)
+	fmt.Println(makeColRowAsNull(arr))
 }
-//Function to verify whether the first string is the left rotation of the string
-func isRotatedString(str1,str2 string)bool {
+//Function to make the entire row or column as 0 if any row or col val is 0
+func makeColRowAsNull(arr [][]int)[][]int {
 
-	if str1 == ""{
-		return false
+	rowLen := len(arr)
+	colLen := len(arr[0])
+
+	var rowBoolArr = make([]bool,rowLen)
+	var colBoolArr = make([]bool, colLen)
+
+	for i:=0;i<rowLen;i++ {
+		for j:=0;j<colLen;j++ {
+			if arr[i][j]==0{
+				rowBoolArr[i] = true
+				colBoolArr[j] = true
+			}
+		}
 	}
-	if str2 == ""{
-		return false
+
+	for i:=0;i<rowLen;i++ {
+		for j:=0;j<colLen;j++ {
+			if rowBoolArr[i] || colBoolArr[j]{
+				arr[i][j] = 0
+			}
+		}
 	}
-		
-	length1 := len(str1)
-	length2 := len(str2)
-	
-	if(length1 != length2){
-		return false
-	}
-	
-	concatStr:=str1+str1
-	if strings.Contains(concatStr,str2){
-	return true
-	}		
-	
-	return false
+	return arr
 }
