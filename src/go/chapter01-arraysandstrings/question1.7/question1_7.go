@@ -27,8 +27,8 @@ import (
 //Main function
 func main() {
 	arr:=[][]int{{1,2,3},{0,4,5},{6,0,8}}
-	fmt.Println("Input String :", 	arr)
-	fmt.Println(makeColRowAsNull(arr))
+	fmt.Println("Input : ", arr)
+	fmt.Println("Output : ",makeColRowAsNull(arr))
 }
 //Function to make the entire row or column as 0 if any row or col val is 0
 func makeColRowAsNull(arr [][]int)[][]int {

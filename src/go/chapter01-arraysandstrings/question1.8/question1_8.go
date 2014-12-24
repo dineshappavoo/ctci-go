@@ -20,11 +20,12 @@ import (
 
 //Main function
 func main() {
-	str1 := "waterbottle"
-	str2 := "erbottlewat"
+	inputMap:=map[string]string{"apple":"pleap", "waterbottle":"erbottlewat", "camera":"macera"}
 	
-	fmt.Println("Input String :", str1,str2)
-	fmt.Println(isRotatedString(str1, str2))
+	for str1,str2:=range inputMap{
+		fmt.Println(str1,str2," Is Rotated? ",isRotatedString(str1, str2))
+	}
+
 }
 //Function to verify whether the first string is the left rotation of the string
 func isRotatedString(str1,str2 string)bool {

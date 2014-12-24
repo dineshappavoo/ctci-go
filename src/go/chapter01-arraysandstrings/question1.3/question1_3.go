@@ -24,11 +24,12 @@ import (
 
 var sMap map[string]int
 
-func main() {
-	str1 := "Helo World!sfsf"
-	str2 := "world Hello"
-	fmt.Println("Input String :", str1, str2)
-	fmt.Println(isPermutation(str1, str2))
+
+func main() {	
+	var inputMap = map[string]string{"apple": "papel","carrot":"tarroc","hello":"llloh",}
+	for str1,str2 := range inputMap{	
+	fmt.Println(str1,",",str2," Is Anagram? ",isPermutation(str1, str2))
+	}
 }
 
 func isPermutation(str1, str2 string) bool {

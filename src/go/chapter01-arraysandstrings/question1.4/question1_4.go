@@ -8,7 +8,7 @@
  2.Find the length of the string
  3.Identify the total number of spaces in the string
  4.Create an array of size (len(str)+(2*spaceCount))
- 5.Copy each character to the array . When you find ' ' copy '%20' to the array instead ' '
+ 5.Copy each character to the array . When you find ' ' copy '%20' to the array instead of ' '
  6.return the array
 */
 package main

@@ -1,6 +1,5 @@
 // Author: Dinesh Appavoo (dineshappavoo) <dinesha.cit@gmail.com>
 
-// Write a method to replace all spaces in a string with ‘%20’
 /*
  Algorithm ROTATE_ARRAY(matrix, n): 
  1.Get the input array matrix and size n
@@ -25,8 +24,8 @@ import (
 //Main function
 func main() {
 	matrix := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
-	fmt.Println("Input String :", matrix)
-	fmt.Println(rotateMatrix(matrix, len(matrix)))
+	fmt.Println("Input : ", matrix)
+	fmt.Println("Output : ",rotateMatrix(matrix, len(matrix)))
 }
 
 //Function to rotate the matrix

@@ -21,7 +21,8 @@ package main
 
 import (
 	"fmt"
-	"strconv"	
+	"strconv"
+	"bytes"	
 )
 
 var sMap map[string]int
@@ -30,7 +31,13 @@ var sMap map[string]int
 func main() {
 	str := "aaabbccccdd"
 	fmt.Println("Input String :", str)
-	fmt.Println(compressString(str))
+		
+	legacyOut:=compressString(str)
+	fmt.Print("Legacy Compress : ")
+	for _,value:=range legacyOut{
+	fmt.Print(value)
+	}
+	fmt.Println("\nPotential compress",potentialCompressString(str))
 }
 
 //Function to compress the string
@@ -62,4 +69,32 @@ func compressString(str string) []string {
 	resArr[j] = strconv.Itoa(count)
 
 	return resArr
+}
+
+//Function to compress the string [potential]
+func potentialCompressString(str string)string {
+	length := len(str)
+	if str == "" {
+		return ""
+	}
+	var count int = 1
+	lastChar := string([]rune(str)[0])
+	
+	var sBuffer bytes.Buffer
+	for i := 1; i < length; i++ {
+		currentChar := string([]rune(str)[i])
+		if currentChar == lastChar {
+			lastChar = currentChar
+			count++
+		} else {
+			sBuffer.WriteString(lastChar)
+			sBuffer.WriteString(strconv.Itoa(count))
+			count = 1
+			lastChar = currentChar
+		}
+	}
+	sBuffer.WriteString(lastChar)
+	sBuffer.WriteString(strconv.Itoa(count))
+
+	return sBuffer.String()
 }
