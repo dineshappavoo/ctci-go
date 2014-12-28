@@ -31,7 +31,13 @@ func main() {
 	l.PushBack(9)
 	kFromLastElem := findKFromLast(l,3)
 	fmt.Println(kFromLastElem.Value)
+
+	kFromLastElemRec := findKFromLastRecr(l.Front(),3)
+	fmt.Println(kFromLastElemRec.value)
+
 }
+
+//Iterative function to find the kth from last element
 func findKFromLast(l *list.List, k int) *list.Element {
 	size:=l.Len()
 	if size<k {
@@ -49,4 +55,24 @@ func findKFromLast(l *list.List, k int) *list.Element {
 		}
 	}
 	return nil
+}
+
+//Object to store the count and the value
+type WrapObj struct {
+	count int
+	value int
+}
+
+//recursive function to find the kth from last element
+func findKFromLastRecr(l *list.Element, k int) WrapObj {
+	if l.Next() == nil {
+		return WrapObj{1,l.Value.(int)}
+	}
+
+	resObj := findKFromLastRecr(l.Next(),k)
+	resObj = WrapObj{resObj.count+1, l.Value.(int)}
+	if resObj.count == k {
+		return resObj
+	}
+	return resObj
 }
