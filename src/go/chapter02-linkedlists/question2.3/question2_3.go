@@ -33,6 +33,8 @@ func main() {
 
 }
 
+//ERROR
+
 func deleteNode(node *list.Element) bool {
 
 	if node == nil || node.Next() == nil {
