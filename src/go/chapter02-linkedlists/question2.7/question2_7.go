@@ -1,11 +1,12 @@
 // Author: Dinesh Appavoo (dineshappavoo) <dinesha.cit@gmail.com>
 
 /*
- Algorithm ADD_LISTS(list1,list2):
- 1.Get the input list1 and list2
- 2.if list1==nil && list2==nil then return nil
- 	else  if list == nill || list2 == nil
- 		return list1==nil?list2:list1
+ Algorithm FIND_STARTING_POINT(list):
+ 1.Get the input list
+ 2.if list==nil return nil
+ 3.Make two pointers runner and current
+ 4.move current once and runner twice on every iteration
+ 5.
  3.add elements and maintain carry from lists until both the lists has elements
  4.Add carry to the continuing list and add value to result list if the lists are of different size
  5.return the result list
@@ -48,7 +49,6 @@ func addLists(l *list.List, m *list.List) *list.List {
 	}
 	lLength := l.Len()
 	mLength := m.Len()
-
 
 	carry := 0
 	value := 0

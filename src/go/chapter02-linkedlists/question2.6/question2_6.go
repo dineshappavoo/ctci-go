@@ -1,11 +1,15 @@
 // Author: Dinesh Appavoo (dineshappavoo) <dinesha.cit@gmail.com>
 
 /*
- Algorithm ADD_LISTS(list1,list2):
- 1.Get the input list1 and list2
- 2.if list1==nil && list2==nil then return nil
- 	else  if list == nill || list2 == nil
- 		return list1==nil?list2:list1
+ Algorithm FIND_STARTING_POINT(list):
+ 1.Get the input list
+ 2.if list==nil return nil
+ 3.Make two pointers fast and slow
+ 4.move slow once and fast twice on every iteration
+ 5.if slow == fast then break
+ 6.if fast == nil || fast.next == nil then return nil
+ 7.slow = head
+ 8.Iterate through the 
  3.add elements and maintain carry from lists until both the lists has elements
  4.Add carry to the continuing list and add value to result list if the lists are of different size
  5.return the result list
@@ -21,7 +25,7 @@ import (
 func main() {
 
 	l := list.New()
-	l.PushFront(4)
+	e1 := l.PushFront(4)
 	l.PushFront(5)
 	l.PushFront(7)
 	l.PushFront(9)
@@ -32,7 +36,7 @@ func main() {
 	m.PushFront(2)
 	m.PushFront(8)
 	//m.PushFront(6)
-	res := addLists(l, m)
+	res := findLoopsInList(l, m)
 	for e := res.Front(); e != nil; e = e.Next() {
 		fmt.Print(e.Value)
 	}
@@ -41,22 +45,18 @@ func main() {
 
 }
 
-func addLists(l *list.List, m *list.List) *list.List {
+func findLoopsInList(l *list.List) *list.List {
 
-	if l == nil && m == nil {
+	if l == nil {
 		return nil
 	}
-	lLength := l.Len()
-	mLength := m.Len()
 
-
-	carry := 0
-	value := 0
-	resList := list.New()
-
-	var e *list.Element
-	var f *list.Element
-	for e, f = l.Front(), m.Front(); e != nil && f != nil; e, f = e.Next(), f.Next() {
+	var slow *list.Element
+	var fast *list.Element
+	for slow, fast = l.Front(), l.Front(); slow != nil && fast != nil; slow, fast = slow.Next(), fast.Next().Next() {
+		if slow == fast {
+			break
+		}
 		value = carry + e.Value.(int) + f.Value.(int)
 		carry = 0
 		carry = value / 10
