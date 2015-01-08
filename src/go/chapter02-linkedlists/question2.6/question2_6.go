@@ -25,63 +25,46 @@ import (
 func main() {
 
 	l := list.New()
-	e1 := l.PushFront(4)
+	l.PushFront(4)
 	l.PushFront(5)
 	l.PushFront(7)
 	l.PushFront(9)
-
 
 	m := list.New()
 	m.PushFront(3)
 	m.PushFront(2)
 	m.PushFront(8)
 	//m.PushFront(6)
-	res := findLoopsInList(l, m)
-	for e := res.Front(); e != nil; e = e.Next() {
-		fmt.Print(e.Value)
-	}
+	res := findLoopsInList(l)
+	fmt.Println(res.Value.(int))
 	fmt.Println(" ")
-
 
 }
 
-func findLoopsInList(l *list.List) *list.List {
+func findLoopsInList(l *list.List) *list.Element {
 
 	if l == nil {
 		return nil
 	}
 
+	var head *list.Element
 	var slow *list.Element
 	var fast *list.Element
+
+	head = l.Front()
 	for slow, fast = l.Front(), l.Front(); slow != nil && fast != nil; slow, fast = slow.Next(), fast.Next().Next() {
 		if slow == fast {
 			break
 		}
-		value = carry + e.Value.(int) + f.Value.(int)
-		carry = 0
-		carry = value / 10
-		value = value % 10
-		resList.PushFront(value)
 	}
 
-	var p *list.Element
-	if lLength > mLength {
-		p = e
-	} else {
-		p = f
+	if fast == nil || fast.Next() == nil {
+		return nil
 	}
-
-	for ; p != nil; p = p.Next() {
-		value = carry + p.Value.(int)
-		carry = 0
-		carry = value / 10
-		value = value % 10
-		resList.PushFront(value)
+	slow = head
+	for slow != fast {
+		slow = slow.Next()
+		fast = fast.Next()
 	}
-
-	if carry != 0 {
-		resList.PushFront(carry)
-	}
-
-	return resList
+	return fast
 }
