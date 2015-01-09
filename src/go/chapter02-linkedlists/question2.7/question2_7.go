@@ -1,7 +1,7 @@
 // Author: Dinesh Appavoo (dineshappavoo) <dinesha.cit@gmail.com>
 
 /*
- Algorithm FIND_STARTING_POINT(list):
+ Algorithm IS_PALINDROME(list1,list2):
  1.Get the input list
  2.if list==nil return nil
  3.Make two pointers runner and current
@@ -33,7 +33,7 @@ func main() {
 	m.PushFront(2)
 	m.PushFront(8)
 	//m.PushFront(6)
-	res := addLists(l, m)
+	res := isPalindrome(l, m)
 	for e := res.Front(); e != nil; e = e.Next() {
 		fmt.Print(e.Value)
 	}
@@ -42,7 +42,7 @@ func main() {
 
 }
 
-func addLists(l *list.List, m *list.List) *list.List {
+func isPalindrome(l *list.List, m *list.List) *list.List {
 
 	if l == nil && m == nil {
 		return nil
