@@ -1,9 +1,12 @@
 // Author: Dinesh Appavoo (dineshappavoo) <dinesha.cit@gmail.com>
 
 /*
- Algorithm IS_PALINDROME(list1,list2):
+ Algorithm IS_PALINDROME(list):
  1.Get the input list
  2.if list==nil return nil
+ 3.Declare a stack s
+ 4.Use slow and fast runner technique to add the elements to the list till the half of the list
+ 5.
  3.Make two pointers runner and current
  4.move current once and runner twice on every iteration
  5.
@@ -17,6 +20,7 @@ package main
 import (
 	"container/list"
 	"fmt"
+	"../Stack"
 )
 
 func main() {
@@ -27,19 +31,34 @@ func main() {
 	l.PushFront(7)
 	l.PushFront(9)
 
-
 	m := list.New()
 	m.PushFront(3)
 	m.PushFront(2)
 	m.PushFront(8)
 	//m.PushFront(6)
-	res := isPalindrome(l, m)
-	for e := res.Front(); e != nil; e = e.Next() {
-		fmt.Print(e.Value)
-	}
+	//res := isPalindrome(l, m)
+	stackImplementation()
+	//for e := res.Front(); e != nil; e = e.Next() {
+	//	fmt.Print(e.Value)
+	//}
 	fmt.Println(" ")
 
+}
 
+func stackImplementation() {
+	st := new(Stack)
+
+	st.Push("Orr")
+	st.Push("It")
+	st.Push("Ship")
+	st.Push("Scott")
+	st.Push("Michael")
+	st.Push("Zachary")
+
+	for st.Length() > 0 {
+		fmt.Printf("%s ", st.Pop().(string))
+	}
+	fmt.Println()
 }
 
 func isPalindrome(l *list.List, m *list.List) *list.List {
