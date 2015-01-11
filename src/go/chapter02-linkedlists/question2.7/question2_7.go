@@ -20,40 +20,115 @@ package main
 import (
 	"container/list"
 	"fmt"
-	"../Stack"
 )
+
+var head *list.Element
 
 func main() {
 
 	l := list.New()
 	l.PushFront(4)
 	l.PushFront(5)
-	l.PushFront(7)
-	l.PushFront(9)
+	l.PushFront(4)
+	l.PushFront(5)
+	l.PushFront(4)
 
 	m := list.New()
 	m.PushFront(3)
 	m.PushFront(2)
 	m.PushFront(8)
-	//m.PushFront(6)
-	//res := isPalindrome(l, m)
+	m.PushFront(6)
+	res := isPalindrome(l)
 	stackImplementation()
-	//for e := res.Front(); e != nil; e = e.Next() {
-	//	fmt.Print(e.Value)
-	//}
-	fmt.Println(" ")
-
+	fmt.Println(res)
+	res = isPalindromeUsingStack(l)
+	fmt.Println(res)
 }
 
+//Reverse list function
+func reverseList(l *list.List) *list.List {
+	m := list.New()
+
+	for e := l.Front(); e != nil; e = e.Next() {
+		m.PushFront(e.Value.(int))
+	}
+	return m
+}
+/*
+func reverseList1(current *list.Element) {
+	if (current == nil) {
+		return
+	}
+
+	if (current.Next()==nil) {
+		head = current
+		return
+	}
+	reverseList1(current.Next())
+	current.Next().Next() = current
+	current.Next() = nil
+}*/
+
+//Palinfrome function using reverse list approach - Iterative
+func isPalindrome(l *list.List) bool {
+
+	rev := reverseList(l)
+	for e, f := l.Front(), rev.Front(); e != nil && f != nil; e, f = e.Next(), f.Next() {
+		if e.Value.(int) != f.Value.(int) {
+			return false
+		}
+	}
+	return true
+}
+
+
+//Stack implementation
+type Stack struct {
+	top  *Node
+	size int
+}
+
+type Node struct {
+	value interface{}
+	next  *Node
+}
+
+func (s *Stack) Length() int {
+	return s.size
+}
+
+func (s *Stack) IsEmpty() bool {
+	return s.size == 0
+}
+
+func (s *Stack) Push(val interface{}) {
+	s.top = &Node{val, s.top}
+	s.size++
+}
+
+func (s *Stack) Peek() interface{} {
+	return s.top.value
+}
+
+func (s *Stack) Pop() (val interface{}) {
+	if s.size > 0 {
+		val, s.top = s.top.value, s.top.next
+		s.size--
+		return
+	}
+	return ""
+}
+
+//Test Stack operations
 func stackImplementation() {
 	st := new(Stack)
 
-	st.Push("Orr")
-	st.Push("It")
-	st.Push("Ship")
-	st.Push("Scott")
-	st.Push("Michael")
-	st.Push("Zachary")
+	st.Push("1")
+	st.Push("2")
+	st.Push("3")
+	st.Push("4")
+	st.Push("5")
+	st.Push("6")
 
 	for st.Length() > 0 {
 		fmt.Printf("%s ", st.Pop().(string))
@@ -61,46 +136,41 @@ func stackImplementation() {
 	fmt.Println()
 }
 
-func isPalindrome(l *list.List, m *list.List) *list.List {
+func isPalindromeUsingStack(l *list.List) bool {
 
-	if l == nil && m == nil {
-		return nil
+	if l == nil {
+		return false
 	}
-	lLength := l.Len()
-	mLength := m.Len()
-
-	carry := 0
-	value := 0
-	resList := list.New()
-
-	var e *list.Element
-	var f *list.Element
-	for e, f = l.Front(), m.Front(); e != nil && f != nil; e, f = e.Next(), f.Next() {
-		value = carry + e.Value.(int) + f.Value.(int)
-		carry = 0
-		carry = value / 10
-		value = value % 10
-		resList.PushFront(value)
+	for e := l.Front(); e != nil; e = e.Next() {
+		n := e.Value.(int)
+		fmt.Println(n)
 	}
+	st := new(Stack)
+	slow := l.Front()
+	fast := l.Front()
 
-	var p *list.Element
-	if lLength > mLength {
-		p = e
-	} else {
-		p = f
+	for ; fast != nil || fast.Next() != nil ; {
+		fmt.Println("test")
+		st.Push(slow.Value.(int))
+		slow = slow.Next()
+		fmt.Println("Fastets")
+		fast = fast.Next().Next()
 	}
 
-	for ; p != nil; p = p.Next() {
-		value = carry + p.Value.(int)
-		carry = 0
-		carry = value / 10
-		value = value % 10
-		resList.PushFront(value)
+	fmt.Println("Testing 1.1")
+
+	//To ignore the middle element in case of odd length
+	if fast.Next() == nil {
+		slow = slow.Next()
 	}
 
-	if carry != 0 {
-		resList.PushFront(carry)
+	fmt.Println("Testing 1")
+	for ; slow != nil; {
+		m := st.Pop().(int)
+		n := slow.Value.(int)
+		if (m!=n) {
+			return false
+		}
 	}
-
-	return resList
+	return true	
 }
