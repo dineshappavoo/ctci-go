@@ -1,7 +1,7 @@
 // Author: Dinesh Appavoo (dineshappavoo) <dinesha.cit@gmail.com>
 
 /*
- Algorithm IS_PALINDROME(list):
+ Algorithm IS_PALINDROME_USING_REVERSE(list):
  1.Get the input list
  2.if list==nil return nil
  3.Declare a stack s
@@ -13,6 +13,15 @@
  3.add elements and maintain carry from lists until both the lists has elements
  4.Add carry to the continuing list and add value to result list if the lists are of different size
  5.return the result list
+
+ Algorithm IS_PALINDROME_USING_STACK(list):
+ 1.Get the input list
+ 2.if list==nil return false
+ 3.Declare a stack s
+ 4.Maintain two pointer slow and fast. Fast moves twice while slow reaches one node.
+ 5.
+ 4.Use slow and fast runner technique to add the elements to the list till the half of the list
+ 5.
 */
 
 package main
@@ -39,7 +48,7 @@ func main() {
 	m.PushFront(8)
 	m.PushFront(6)
 	res := isPalindrome(l)
-	stackImplementation()
+	//stackImplementation()
 	fmt.Println(res)
 	res = isPalindromeUsingStack(l)
 	fmt.Println(res)
@@ -54,6 +63,7 @@ func reverseList(l *list.List) *list.List {
 	}
 	return m
 }
+
 /*
 func reverseList1(current *list.Element) {
 	if (current == nil) {
@@ -80,7 +90,6 @@ func isPalindrome(l *list.List) bool {
 	}
 	return true
 }
-
 
 //Stack implementation
 type Stack struct {
@@ -141,36 +150,28 @@ func isPalindromeUsingStack(l *list.List) bool {
 	if l == nil {
 		return false
 	}
-	for e := l.Front(); e != nil; e = e.Next() {
-		n := e.Value.(int)
-		fmt.Println(n)
-	}
 	st := new(Stack)
 	slow := l.Front()
 	fast := l.Front()
 
-	for ; fast != nil || fast.Next() != nil ; {
-		fmt.Println("test")
+	for fast != nil && fast.Next() != nil {
 		st.Push(slow.Value.(int))
 		slow = slow.Next()
-		fmt.Println("Fastets")
 		fast = fast.Next().Next()
 	}
 
-	fmt.Println("Testing 1.1")
-
-	//To ignore the middle element in case of odd length
+	//To ignore the middle element in case of odd length list
 	if fast.Next() == nil {
 		slow = slow.Next()
 	}
 
-	fmt.Println("Testing 1")
-	for ; slow != nil; {
+	for ;slow != nil; {
 		m := st.Pop().(int)
 		n := slow.Value.(int)
-		if (m!=n) {
+		if m != n {
 			return false
 		}
+		slow = slow.Next()
 	}
-	return true	
+	return true
 }
