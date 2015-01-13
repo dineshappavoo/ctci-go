@@ -4,7 +4,7 @@
  Algorithm ADD_LISTS(list1,list2):
  1.Get the input list1 and list2
  2.if list1==nil && list2==nil then return nil
- 	else  if list == nill || list2 == nil
+ 	else  if list == nill || list2 == nil then
  		return list1==nil?list2:list1
  3.add elements and maintain carry from lists until both the lists has elements
  4.Add carry to the continuing list and add value to result list if the lists are of different size
@@ -26,7 +26,6 @@ func main() {
 	l.PushFront(7)
 	l.PushFront(9)
 
-
 	m := list.New()
 	m.PushFront(3)
 	m.PushFront(2)
@@ -37,8 +36,6 @@ func main() {
 		fmt.Print(e.Value)
 	}
 	fmt.Println(" ")
-
-
 }
 
 func addLists(l *list.List, m *list.List) *list.List {

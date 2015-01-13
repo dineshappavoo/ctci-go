@@ -33,8 +33,6 @@ func main() {
 
 }
 
-//ERROR
-
 func splitAroundX(l *list.List, x int) *list.List {
 
 	if l == nil {
@@ -45,6 +43,7 @@ func splitAroundX(l *list.List, x int) *list.List {
 
 	for e := l.Front(); e != nil; e = e.Next() {
 		m := e.Value.(int)
+		//Compare the value of x with the current node value and append to the respective list
 		if m < x {
 			lThanX.PushBack(m)
 		} else {

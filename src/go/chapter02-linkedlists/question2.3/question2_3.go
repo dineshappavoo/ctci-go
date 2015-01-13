@@ -4,9 +4,8 @@
  Algorithm DELETE_NODE(node):
  1.Get the pointer to the node
  2.if node==nil || node.next == nil then return false
- 3.node.Value = node.next.value
- 4.node.next=node.next.next
- 5.return true
+ 3.l.remove(node)
+ 4.return true
 */
 
 package main
@@ -27,7 +26,7 @@ func main() {
 	res := deleteNode(l, e4)
 	fmt.Println(res)
 
-	for e:=l.Front(); e!=nil;e=e.Next() {
+	for e := l.Front(); e != nil; e = e.Next() {
 		fmt.Println(e.Value)
 	}
 

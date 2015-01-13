@@ -3,7 +3,7 @@
 /*
 Algorithm KTH_FROM_LAST(list,k):
  1.Get the input linked list and k
- 2.if list.Size()<k return nil
+ 2.if list.Size()<k then return nil
  2.for i from 1 to k 
  		Iterate the list and the get the element of k th position kElem
  3.pt=l.Front()
@@ -20,15 +20,9 @@ import (
 var sMap map[int]bool
 func main() {
 	l := list.New()
-	l.PushFront(4)
-	l.PushFront(5)
-	l.PushFront(7)
-	l.PushFront(6)
-	l.PushFront(5)
-	l.PushFront(4)
-	l.PushFront(5)
-	l.PushFront(7)
-	l.PushBack(9)
+	for i := 1 ;i < 100 ; i++ {
+		l.PushBack(i)
+	}
 	kFromLastElem := findKFromLast(l,3)
 	fmt.Println(kFromLastElem.Value)
 
@@ -40,6 +34,7 @@ func main() {
 //Iterative function to find the kth from last element
 func findKFromLast(l *list.List, k int) *list.Element {
 	size:=l.Len()
+	//Base condition. If the size of the list is less than k then kth element cannot be found
 	if size<k {
 	return nil
 	}
@@ -63,6 +58,7 @@ type WrapObj struct {
 	value int
 }
 
+//ERROR
 //recursive function to find the kth from last element
 func findKFromLastRecr(l *list.Element, k int) WrapObj {
 	if l.Next() == nil {

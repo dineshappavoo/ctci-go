@@ -23,10 +23,14 @@ import (
 
 func main() {
 	l := list.New()
-	l.PushFront(4)
-	l.PushFront(5)
-	l.PushFront(7)
-	l.PushFront(9)
+	//l.PushFront(4)
+	//l.PushFront(5)
+	//l.PushFront(7)
+	//l.PushFront(9)
+
+	for i := 1 ;i < 100 ; i++ {
+		l.PushBack(i)
+	}
 
 	res := findLoopsInList(l)
 	fmt.Println(res.Value.(int))

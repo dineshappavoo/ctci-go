@@ -1,20 +1,23 @@
 // Author: Dinesh Appavoo (dineshappavoo) <dinesha.cit@gmail.com>
 
 /*
-Algorithm REMOVER_DUPLICATES(list): [Using temp buffer]
+Algorithm REMOVER_DUPLICATES(list): [Without using temp buffer]
  1.Get the input linked list
- 2.Create a map of [int]boolean
- 4.For i from 1 to len(list) iterate through the nodes nd of the list
-		if nd present in the map then remove current node
-		else put nd to the map --> map[nd]=true
+ 2.Create a map of [string]boolean
+ 4.For e from first to last node iterate through the nodes m of the list
+ 		for f from e to last node iterate through the nodes n of the list
+			if m==n then remove f 
  5.return list
 */
 package main
+
 import (
 	"container/list"
 	"fmt"
 )
+
 var sMap map[int]bool
+
 func main() {
 	l := list.New()
 	l.PushFront(4)
@@ -32,16 +35,20 @@ func main() {
 	}
 }
 func removeDuplicate(l *list.List) *list.List {
-	sMap = make(map[int]bool)
 	var next *list.Element
+	var inNext *list.Element
 	for e := l.Front(); e != nil; e = next {
-		next = e.Next()
 		m := e.Value.(int)
-		//To verify whether the node value present in the map
-		if sMap[m] == true {
-			l.Remove(e)
-		} else {
-			sMap[m] = true
+		next = e.Next()
+		for f := e; f != nil; f = inNext {
+			n := f.Value.(int)
+			inNext = f.Next()
+			if e != f {
+				if m == n {
+					l.Remove(f)
+
+				}
+			}
 		}
 	}
 	return l
