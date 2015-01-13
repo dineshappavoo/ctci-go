@@ -3,25 +3,20 @@
 /*
  Algorithm IS_PALINDROME_USING_REVERSE(list):
  1.Get the input list
- 2.if list==nil return nil
- 3.Declare a stack s
- 4.Use slow and fast runner technique to add the elements to the list till the half of the list
- 5.
- 3.Make two pointers runner and current
- 4.move current once and runner twice on every iteration
- 5.
- 3.add elements and maintain carry from lists until both the lists has elements
- 4.Add carry to the continuing list and add value to result list if the lists are of different size
- 5.return the result list
+ 2.if list==nil return false
+ 3.reverse the list revList
+ 4.Iterate through the original and reversed list and compare the values.
+ 5.If the value does not match then return false else return true
 
  Algorithm IS_PALINDROME_USING_STACK(list):
  1.Get the input list
  2.if list==nil return false
  3.Declare a stack s
  4.Maintain two pointer slow and fast. Fast moves twice while slow reaches one node.
- 5.
- 4.Use slow and fast runner technique to add the elements to the list till the half of the list
- 5.
+ 5.Add the elements to the stack till the mid of the list using fast runner technique
+ 6.Move the slow pointer once if the list is of odd length
+ 7.compare the slow pointer value and the poped the value from stack
+ 8.if the value doesn't match then return false else return true
 */
 
 package main

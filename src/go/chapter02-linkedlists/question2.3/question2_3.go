@@ -40,10 +40,9 @@ func deleteNode(node *list.Element) bool {
 	if node == nil || node.Next() == nil {
 		return false
 	}
-
-	var next *list.Element 
-	next = node.Next()
-	node.Value = node.Next().Value
-	next = next.Next()
+	//var nextNode *list.Element 
+	nextNode := node.next.(*list.Element)
+	node.Value = node.Next().Value.(int)
+	nextNode = nextNode.next.(*Element)
 	return true
 }
