@@ -24,7 +24,7 @@ func main() {
 	e4 := l.PushFront(7)
 	l.PushFront(6)
 	l.PushBack(9)
-	res := deleteNode(e4)
+	res := deleteNode(l, e4)
 	fmt.Println(res)
 
 	for e:=l.Front(); e!=nil;e=e.Next() {
@@ -32,17 +32,11 @@ func main() {
 	}
 
 }
-
-//ERROR
-
-func deleteNode(node *list.Element) bool {
+func deleteNode(l *list.List, node *list.Element) bool {
 
 	if node == nil || node.Next() == nil {
 		return false
 	}
-	//var nextNode *list.Element 
-	nextNode := node.next.(*list.Element)
-	node.Value = node.Next().Value.(int)
-	nextNode = nextNode.next.(*Element)
+	l.Remove(node)
 	return true
 }
