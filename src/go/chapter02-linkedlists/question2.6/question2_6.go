@@ -20,25 +20,29 @@ import (
 	"container/list"
 	"fmt"
 )
-
 func main() {
 	l := list.New()
-	for i := 1 ;i < 100 ; i++ {
-		l.PushBack(i)
+	l.PushBack(0)
+	l.PushBack(1)
+	l.PushBack(2)
+	l.PushBack(3)
+	l.PushBack(4)
+	l.PushBack(5)
+
+	e6 := l.PushBack(6)
+	l.PushBack(7)
+	e8 :=l.PushBack(8)
+	e9 := l.InsertAfter(9,e8)
+	l.InsertBefore(e9, e6)
+
+	for e:=l.Front() ; e !=nil ; e=e.Next() {
+		fmt.Println(e.Value)
 	}
-
-	res := findLoopsInList(l)
-	fmt.Println(res.Value.(int))
-	fmt.Println(" ")
-
 }
-
 func findLoopsInList(l *list.List) *list.Element {
-
 	if l == nil {
 		return nil
 	}
-
 	var head *list.Element
 	var slow *list.Element
 	var fast *list.Element
@@ -49,7 +53,6 @@ func findLoopsInList(l *list.List) *list.Element {
 			break
 		}
 	}
-
 	if fast == nil || fast.Next() == nil {
 		return nil
 	}
