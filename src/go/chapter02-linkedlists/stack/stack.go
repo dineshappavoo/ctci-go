@@ -1,4 +1,4 @@
-package main
+package stack
 
 import (
 	"fmt"
@@ -12,6 +12,16 @@ type Stack struct {
 type Node struct {
 	value interface{}
 	next  *Node
+}
+
+// New returns an initialized list.
+func New() *Stack { return new(Stack).Init() }
+
+// Init initializes or clears list l.
+func (s *Stack) Init() *Stack {
+	//s.top.next = &s.top
+	s.size = 0
+	return s
 }
 
 func (s *Stack) Length() int {
@@ -41,14 +51,14 @@ func (s *Stack) Pop() (val interface{}) {
 }
 
 func main() {
-	stack := new(Stack)
+	stack := New()
 
-	stack.Push("Orr")
-	stack.Push("It")
-	stack.Push("Ship")
-	stack.Push("Scott")
-	stack.Push("Michael")
-	stack.Push("Zachary")
+	stack.Push("1")
+	stack.Push("2")
+	stack.Push("3")
+	stack.Push("4")
+	stack.Push("5")
+	stack.Push("6")
 
 	for stack.Length() > 0 {
 		fmt.Printf("%s ", stack.Pop().(string))

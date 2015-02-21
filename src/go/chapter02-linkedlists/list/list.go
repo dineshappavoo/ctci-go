@@ -1,5 +1,12 @@
 package list
 
+/** IN PLACE DELETE APPROACH . HERE WE USE THE ACTUAL LIST IMPLEMENTATION SOURCE FROM GOLANG WITH A TWEAK. OTHERWISE WE CANT USE THE UNEXPORTED POINTER 'next'
+FROM ELEMENT STRUCT
+
+Reference : https://golang.org/src/container/list/list.go
+*/
+
+
 //Reference : https://golang.org/src/container/list/list.go
 
 // Copyright 2009 The Go Authors. All rights reserved.
@@ -119,7 +126,7 @@ func (l *List) remove(e *Element) *Element {
 	return e
 }
 
-func (l *List) removeInPlace(e *Element) {
+func (l *List) RemoveInPlace(e *Element) {
 	if e == nil || e.Next() == nil {
 		return
 	}
