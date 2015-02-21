@@ -1,7 +1,12 @@
 // Author: Dinesh Appavoo (dineshappavoo) <dinesha.cit@gmail.com>
 
-/*
-
+/*Algorithm BST_MINIMAL_HEIGHT(arr, low, high): 
+ 1.Get the input array arr
+ 2.find the mid element using low and high . mid =(low+high)/2
+ 3.t.Value = arr[mid]
+ 4.t.Left=BST_MINIMAL_HEIGHT(arr, low, mid)
+ 5.t.Right=BST_MINIMAL_HEIGHT(arr, mid+1, high)
+ 6.return t
 */
 package main
 
@@ -18,6 +23,13 @@ func main() {
 	fmt.Println(height)
 
 	fmt.Println("Tree Balanced is ", isBalanced(t1))
+}
+
+func getMinimalBST(arr []int, low int, high int) *binarytree.Tree {
+if low>high {
+	return nil
+}
+
 }
 
 func getHeight(t *binarytree.Tree) float64 {

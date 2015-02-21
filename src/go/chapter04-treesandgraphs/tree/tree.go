@@ -24,9 +24,8 @@ import (
 
 // A Tree is a binary tree with integer values.
 type Tree struct {
-	Left  *Tree
 	Value int
-	Right *Tree
+	var adjacents []*Tree
 }
 
 // Walk traverses a tree depth-first,
@@ -81,7 +80,9 @@ func New(n, k int) *Tree {
 
 func insert(t *Tree, v int) *Tree {
 	if t == nil {
-		return &Tree{nil, v, nil}
+		var adjacents []Tree  // an empty list
+		adjacents = append(adjacents, nil)	
+		return &Tree{ v, adjacents}
 	}
 	if v < t.Value {
 		t.Left = insert(t.Left, v)

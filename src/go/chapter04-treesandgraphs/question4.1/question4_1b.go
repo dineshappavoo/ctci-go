@@ -1,36 +1,52 @@
 // Author: Dinesh Appavoo (dineshappavoo) <dinesha.cit@gmail.com>
 
 /*
-Algorithm REMOVER_DUPLICATES(list): [Using temp buffer]
- 1.Get the input linked list
- 2.Create a map of [string]boolean
- 4.For i from 1 to len(list) iterate through the nodes nd of the list
-		if nd present in the map then remove current node
-		else put nd to the map --> map[nd]=true
- 5.return list
+
 */
 package main
 
 import (
 	"fmt"
-	"go/chapter04-treesandgraphs/tree"
+	"go/chapter04-treesandgraphs/binarytree"
 	"math"
 )
 
 func main() {
 
-	t1 := tree.New(100, 1)
-	height := getHeight(t1)
-	fmt.Println(height)
+	t1 := binarytree.New(100, 1)
+	isBalanced(t1)
 
-	t2 := tree.New(100, 1)
-	height = getHeight(t2)
-	fmt.Println(height)
+	t2 := binarytree.New(100, 1)
+	isBalanced(t2)
 }
 
-func getHeight(t *tree.Tree) float64 {
+func checkHeight(t *binarytree.Tree) float64 {
 	if t == nil {
 		return 0
 	}
-	return math.Max(getHeight(t.Left), getHeight(t.Right)) + 1
+
+	leftHeight := checkHeight(t.Left)
+	if leftHeight == -1 {
+		return -1
+	}
+	rightHeight := checkHeight(t.Right)
+	if rightHeight == -1 {
+		return -1
+	}
+
+	height := math.Abs(leftHeight - rightHeight)
+
+	if height > 1 {
+		return -1
+	}
+	return math.Max(leftHeight, rightHeight) + 1
+}
+
+func isBalanced(t *binarytree.Tree) {
+	heightBalance := checkHeight(t)
+	if heightBalance == -1 {
+		fmt.Println("Tree is not balanced")
+	} else {
+		fmt.Println("Tree is balanced")
+	}
 }
