@@ -16,17 +16,7 @@ import (
 )
 var sMap map[int]bool
 func main() {
-	l := list.New()
-	l.PushFront(4)
-	l.PushFront(5)
-	l.PushFront(7)
-	l.PushFront(6)
-	l.PushFront(5)
-	l.PushFront(4)
-	l.PushFront(5)
-	l.PushFront(7)
-	l.PushBack(9)
-	l = removeDuplicate(l)
+
 	for e := l.Front(); e != nil; e = e.Next() {
 		fmt.Println(e.Value)
 	}
