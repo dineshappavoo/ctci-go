@@ -10,28 +10,27 @@ Algorithm REMOVER_DUPLICATES(list): [Using temp buffer]
  5.return list
 */
 package main
+
 import (
-	"container/list"
 	"fmt"
+	"go/chapter04-treesandgraphs/tree"
+	"math"
 )
-var sMap map[int]bool
+
 func main() {
 
-	for e := l.Front(); e != nil; e = e.Next() {
-		fmt.Println(e.Value)
-	}
+	t1 := tree.New(100, 1)
+	height := getHeight(t1)
+	fmt.Println(height)
+
+	t2 := tree.New(100, 1)
+	height = getHeight(t2)
+	fmt.Println(height)
 }
-func removeDuplicate(l *list.List) *list.List {
-	sMap = make(map[int]bool)
-	var next *list.Element
-	for e := l.Front(); e != nil; e = next {
-		next = e.Next()
-		m := e.Value.(int)
-		if sMap[m] == true {
-			l.Remove(e)
-		} else {
-			sMap[m] = true
-		}
+
+func getHeight(t *tree.Tree) float64 {
+	if t == nil {
+		return 0
 	}
-	return l
+	return math.Max(getHeight(t.Left), getHeight(t.Right)) + 1
 }
