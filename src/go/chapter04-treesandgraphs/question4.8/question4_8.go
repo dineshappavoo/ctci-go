@@ -22,9 +22,6 @@ import (
 	"go/chapter04-treesandgraphs/binarytree"
 )
 
-const MaxInt = int(^uint(0) >> 1)
-const MinInt = -MaxInt - 1
-
 func main() {
 
 	inArr1 := []int{4, 5, 7, 8, 9, 10, 12, 14, 15, 17, 19, 20}
