@@ -20,6 +20,7 @@ package binarytree
 import (
 	"fmt"
 	"math/rand"
+	"math"
 )
 
 // A Tree is a binary tree with integer values.
@@ -69,11 +70,6 @@ func Compare(t1, t2 *Tree) bool {
 	return false
 }
 
-// New returns a new, empty binary tree
-func NewTree() *Tree {
-	return &Tree{nil, 0, nil}
-}	
-
 // New returns a new, random binary tree
 // holding the values 1k, 2k, ..., nk.
 func New(n, k int) *Tree {
@@ -83,6 +79,43 @@ func New(n, k int) *Tree {
 	}
 	return t
 }
+
+// New returns a new, empty binary tree
+func NewTree() *Tree {
+	return &Tree{nil, 0, nil}
+}	
+
+//NewMinimalHeightBST gives the minimal height tree from the given sorted array
+func NewMinimalHeightBST(arr []int, low int, high int) *Tree {
+	if high < low {
+		return nil
+	}
+	mid := (low + high) / 2
+	t1 := NewTree()
+	t1.Value = arr[mid]
+	t1.Left = NewMinimalHeightBST(arr, low, mid-1)
+	t1.Right = NewMinimalHeightBST(arr, mid+1, high)
+	return t1
+}
+
+//Traverse prints the tree
+func InOrderTraverse(t *Tree) {
+	if t==nil {
+		return
+	}
+	InOrderTraverse(t.Left)
+	fmt.Print(t.Value, " ")
+	InOrderTraverse(t.Right)
+}
+
+//Height gives the height of the BST
+func Height(t *Tree) float64 {
+	if t==nil {
+		return 0
+	}
+	return math.Max(Height(t.Left), Height(t.Right))+1
+}
+
 
 func insert(t *Tree, v int) *Tree {
 	if t == nil {
