@@ -36,25 +36,21 @@ func findCommonAncestor(t1 *binarytree.Tree, t2 *binarytree.Tree) *binarytree.Tr
 	if t1 == nil || t2 == nil {
 		return nil
 	}
-	fmt.Println("Test 0")
-	for ;t1 != nil || t2 != nil; {
-		fmt.Println("Test 1")
+	for t1 != nil || t2 != nil {
+
 		if t1.Parent != nil {
-			fmt.Println(t1.Parent)
 			if t1.Parent.Visited == true {
 				return t1.Parent
-			} else {
-				t1 = t1.Parent
 			}
 		}
 
 		if t2.Parent != nil {
 			if t2.Parent.Visited == true {
 				return t2.Parent
-			} else {
-				t2 = t2.Parent
 			}
 		}
+		t1 = t1.Parent
+		t2 = t2.Parent
 	}
 	return nil
 }
