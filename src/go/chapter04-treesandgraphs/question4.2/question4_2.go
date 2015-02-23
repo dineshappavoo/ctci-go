@@ -12,35 +12,47 @@ package main
 
 import (
 	"fmt"
+	"go/chapter04-treesandgraphs/queue"
 	"go/chapter04-treesandgraphs/tree"
-	"go/chapter02-linkedlists/list"
+	"reflect"
 )
 
 func main() {
 
-	inArr := []int{4, 5, 7, 8, 9}
-	t1 := getMinimalBST(inArr, 0, len(inArr)-1)
-	binarytree.InOrderTraverse(t1)
-	fmt.Println("")
+	t1 := tree.NewTree()
+	pathAvailable := isPathAvailable(t1, t1)
+	fmt.Println("Is Path Availabe ? ", pathAvailable)
 }
 
-func getLevelbasedList(nodeList []*list.List, t *binarytree.Tree, level int) []*list.List {
+func isPathAvailable(t1 *tree.Tree, t2 *tree.Tree) bool {
+	if t1 == nil || t2 == nil {
+		return false
+	}
+	q := queue.New()
 
-	if t==nil {
-		return nil
+	if t1.Visited == false {
+		q.Push(t1)
+		t1.Visited = true
+		if t1.Value == t2.Value {
+			return true
+		}
 	}
-	if nodeList[level]==nil {
-			l := list.New()
-			l.PushFront(t.Value)
-			nodeList[level]=l			
-	}else{
-		l:=nodeList[level]
-		l.PushFront(t.Value)
-	}
+	for !q.IsEmpty() {
+		node := q.Poll()
 
-	adjacents := t.adjacents
-	for _,node := range adjacents {
-		getLevelbasedList(nodeList, node, level+1)
+		//go reflect package used the get the array of inteface from the struct
+		refValue := reflect.ValueOf(&node).Elem().FieldByName(string("Adjacents"))
+		adjNodes := refValue.Interface().([]*tree.Tree)
+
+		for _, n := range adjNodes {
+			if n.Visited == false {
+				if n.Value == t2.Value {
+					return true
+				}
+				n.Visited = true
+				q.Push(n)
+			}
+		}
 	}
-	return nodeList
+	return false
 }

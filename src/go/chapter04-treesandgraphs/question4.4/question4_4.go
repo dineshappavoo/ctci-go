@@ -21,20 +21,28 @@ func main() {
 	inArr := []int{4, 5, 7, 8, 9}
 	t1 := getMinimalBST(inArr, 0, len(inArr)-1)
 	binarytree.InOrderTraverse(t1)
+	nodeList := []*list.List
+	nodeList = getLevelbasedList(nodeList, t1, 0)
 	fmt.Println("")
 }
 
 func getLevelbasedList(nodeList []*list.List, t *binarytree.Tree, level int) []*list.List {
 
-}
-func getMinimalBST(arr []int, low int, high int) *binarytree.Tree {
-	if high < low {
+	if t==nil {
 		return nil
 	}
-	mid := (low + high) / 2
-	t1 := binarytree.NewTree()
-	t1.Value = arr[mid]
-	t1.Left = getMinimalBST(arr, low, mid-1)
-	t1.Right = getMinimalBST(arr, mid+1, high)
-	return t1
+	if nodeList[level]==nil {
+			l := list.New()
+			l.PushFront(t.Value)
+			nodeList[level]=l			
+	}else{
+		l:=nodeList[level]
+		l.PushFront(t.Value)
+	}
+
+	adjacents := t.adjacents
+	for _,node := range adjacents {
+		getLevelbasedList(nodeList, node, level+1)
+	}
+	return nodeList
 }

@@ -24,13 +24,14 @@ import (
 // A Tree is a binary tree with integer values.
 type Tree struct {
 	Value int
-	adjacents []*Tree
+	Visited bool
+	Adjacents []*Tree
 }
 
 
 // New returns a new, empty binary tree
 func NewTree() *Tree {
-	return &Tree{0, nil}
+	return &Tree{}
 }	
 
 /*
