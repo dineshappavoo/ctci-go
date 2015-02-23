@@ -13,6 +13,7 @@ package main
 import (
 	"fmt"
 	"go/chapter04-treesandgraphs/tree"
+	"go/chapter02-linkedlists/list"
 )
 
 func main() {
@@ -25,19 +26,21 @@ func main() {
 
 func getLevelbasedList(nodeList []*list.List, t *binarytree.Tree, level int) []*list.List {
 
-	
-	if nodeList[level]==nil {
-		
-	}
-}
-func getMinimalBST(arr []int, low int, high int) *binarytree.Tree {
-	if high < low {
+	if t==nil {
 		return nil
 	}
-	mid := (low + high) / 2
-	t1 := binarytree.NewTree()
-	t1.Value = arr[mid]
-	t1.Left = getMinimalBST(arr, low, mid-1)
-	t1.Right = getMinimalBST(arr, mid+1, high)
-	return t1
+	if nodeList[level]==nil {
+			l := list.New()
+			l.PushFront(t.Value)
+			nodeList[level]=l			
+	}else{
+		l:=nodeList[level]
+		l.PushFront(t.Value)
+	}
+
+	adjacents := t.adjacents
+	for _,node := range adjacents {
+		getLevelbasedList(nodeList, node, level+1)
+	}
+	return nodeList
 }
