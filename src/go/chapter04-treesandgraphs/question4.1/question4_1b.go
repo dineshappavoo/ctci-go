@@ -1,7 +1,13 @@
 // Author: Dinesh Appavoo (dineshappavoo) <dinesha.cit@gmail.com>
 
-/*
+/*Algorithm CHECK_HEIGHT(t):
+1.get the input tree t
+2.left_height = CHECK_HEIGHT(t.Left), right_height = CHECK_HEIGHT(t.Right)
+3.if left_height == -1 || right_height == -1  then return -1 //This -1 is bypass multiple iterations
+4.height = Abs(left_height - right_height)
+5.if height > 1 then return -1 else  return Max(left_height, right_height)+1
 
+If CHECK_HEIGHT(root) gives -1 then the tree is not balanced else it is balanced
 */
 package main
 
