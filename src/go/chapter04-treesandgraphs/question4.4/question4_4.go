@@ -12,37 +12,41 @@ package main
 
 import (
 	"fmt"
-	"go/chapter04-treesandgraphs/binarytree"
 	"go/chapter02-linkedlists/list"
+	"go/chapter04-treesandgraphs/binarytree"
 )
 
 func main() {
-
 	inArr := []int{4, 5, 7, 8, 9}
-	t1 := getMinimalBST(inArr, 0, len(inArr)-1)
+	t1 := binarytree.NewMinimalHeightBST(inArr, 0, len(inArr)-1)
 	binarytree.InOrderTraverse(t1)
-	nodeList := []*list.List
-	nodeList = getLevelbasedList(nodeList, t1, 0)
-	fmt.Println("")
+	var nodeList []*list.List
+	getLevelbasedList(&nodeList, t1, 0)
+	fmt.Println()
+	for _, value := range nodeList {
+		fmt.Print("[ ")
+		for x := value.Front(); x != nil; x = x.Next() {
+			fmt.Print(x.Value.(int), " ")
+		}
+		fmt.Println("]")
+	}
 }
 
-func getLevelbasedList(nodeList []*list.List, t *binarytree.Tree, level int) []*list.List {
-
-	if t==nil {
-		return nil
+//Here *[]*list.List used in the function argument to input pass by referrence slice
+func getLevelbasedList(nodeList *[]*list.List, t *binarytree.Tree, level int) {
+	if t == nil {
+		return
 	}
-	if nodeList[level]==nil {
-			l := list.New()
-			l.PushFront(t.Value)
-			nodeList[level]=l			
-	}else{
-		l:=nodeList[level]
+	l := list.New()
+	if len(*nodeList) == level {
+		l = list.New()
+		l.PushFront(t.Value)
+		*nodeList = append(*nodeList, l)
+
+	} else {
+		l = (*nodeList)[level] //index operator doesn't automatically dereference pointers. we need to use parentheses to specify what is dereferenced.
 		l.PushFront(t.Value)
 	}
-
-	adjacents := t.adjacents
-	for _,node := range adjacents {
-		getLevelbasedList(nodeList, node, level+1)
-	}
-	return nodeList
+	getLevelbasedList(nodeList, t.Left, level+1)
+	getLevelbasedList(nodeList, t.Right, level+1)
 }

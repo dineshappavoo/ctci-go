@@ -127,7 +127,6 @@ func insert(t *Tree, v int) *Tree {
 			t.Left = &Tree{nil, v, nil, t, false}
 		} else {
 			t.Right = &Tree{nil, v, nil, t, false}
-
 		}
 		return t
 	}
