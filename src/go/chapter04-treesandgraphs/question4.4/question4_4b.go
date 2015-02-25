@@ -9,53 +9,56 @@
 6.return t
 */
 package main
-
 import (
 	"fmt"
-	"go/chapter04-treesandgraphs/binarytree"
 	"go/chapter02-linkedlists/list"
+	"go/chapter04-treesandgraphs/binarytree"
 )
-
 func main() {
 
 	inArr := []int{4, 5, 7, 8, 9}
-	t1 := getMinimalBST(inArr, 0, len(inArr)-1)
+	t1 := binarytree.NewMinimalHeightBST(inArr, 0, len(inArr)-1)
 	binarytree.InOrderTraverse(t1)
-	nodeList := []*list.List
-	getLevelbasedList(nodeList, t1, 0)
+	var nodeList []*list.List
 
-	for _,value := range nodeList {
-		for _ lVal := range value {
-			fmt.Print(lVal)
+	nodeList = getLevelbasedList(t1, 0)
+
+	fmt.Println()
+	for _, value := range nodeList {
+		fmt.Print("[ ")
+		for x := value.Front(); x != nil; x = x.Next() {
+			treeNode := x.Value.(*binarytree.Tree)
+			fmt.Print(treeNode, " ")
 		}
-		fmt.Println()
+		fmt.Println("]")
 	}
 }
 
-func getLevelbasedList(nodeList []*list.List, root *binarytree.Tree, level int) []*list.List{
-
-	if t==nil {
-		return
+func getLevelbasedList(root *binarytree.Tree, level int) []*list.List {
+	if root == nil {
+		return nil
 	}
 	var nodeList []*list.List
-	var parents []int
+	parents := list.New()
+	current := list.New()
 
-	parents = append(parents, root.Value.(int))
+	current.PushFront(root)
 
-	var current []int
+	for current.Len() > 0 {
+		nodeList = append(nodeList, current)
+		parents = current
+		current = list.New()
 
-	for parents != nil {
-		current = append(current[:0], current[1:]...)
+		for x := parents.Front(); x != nil; x = x.Next() {
+			node := x.Value.(*binarytree.Tree)
+			if node.Left != nil {
+				 current.PushFront(node.Left)
+			}
+			if node.Right != nil {
+				 current.PushFront(node.Right)
+			}
+		}
 	}
-	 := list.New()
-	if len(nodeList)==level {
-			l = list.New()
-			l.PushFront(t.Value)
-	}else{
-		l=nodeList[level]
-		l.PushFront(t.Value)
-	}
-	nodeList[level]=l
-	getLevelbasedList(nodeList, t.Left, level+1)
-	getLevelbasedList(nodeList, t.Right, level+1)
+	return nodeList
+
 }
