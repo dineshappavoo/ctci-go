@@ -1,12 +1,16 @@
 // Author: Dinesh Appavoo (dineshappavoo) <dinesha.cit@gmail.com>
 
-/*Algorithm BST_MINIMAL_HEIGHT(arr, low, high): 
-1.Get the input array arr
-2.find the mid element using low and high . mid =(low+high)/2
-3.t.Value = arr[mid]
-4.t.Left=BST_MINIMAL_HEIGHT(arr, low, mid)
-5.t.Right=BST_MINIMAL_HEIGHT(arr, mid+1, high)
-6.return t
+/*Algorithm GET_LEVEL_BASED_LIST(list, t, level): 
+1.Get the array of list, node t, level
+2.create a linkelist l
+3.if len(list) == level  //To identify whether a list is available for the level
+	l = list.New()
+	l.add(t.Value)
+ else
+ 	l = list[level]
+ 	l.add(t.Value)
+ GET_LEVEL_BASED_LIST(list, t.Left, level+1)
+ GET_LEVEL_BASED_LIST(list, t.Right, level+1)
 */
 package main
 

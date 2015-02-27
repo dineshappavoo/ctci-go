@@ -2,7 +2,7 @@
 
 /*Algorithm IS_BALANCED(t):
 1.Get the input tree
-2.if t.Left==nill & t.Right = nil then return true
+2.if t == nil then return true
 3.left_height = GET_HEIGHT(l), right_height = GET_HEIGHT(r)
 4.heightDiff = Abs(left_height) - right_height)
 5.if heightDiff > 1 then return false
@@ -22,7 +22,9 @@ import (
 
 func main() {
 
-	t1 := binarytree.New(100, 1)
+	inArr := []int{4, 5, 7, 8, 9}
+	t1 := binarytree.NewMinimalHeightBST(inArr, 0, len(inArr)-1)
+	binarytree.InOrderTraverse(t1)
 	height := getHeight(t1)
 	fmt.Println(height)
 
@@ -37,7 +39,7 @@ func getHeight(t *binarytree.Tree) float64 {
 }
 
 func isBalanced(t *binarytree.Tree) bool {
-	if t.Left == nil && t.Right == nil {
+	if t == nil {
 		return true
 	}
 	heightDiff := math.Abs(getHeight(t.Left) - getHeight(t.Right))

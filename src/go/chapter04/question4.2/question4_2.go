@@ -6,6 +6,7 @@
 3.if t1.Visited==false
 	q.Push(t1)
 	t1.Visited=true
+	if t1.Value == t2.Value return true
 4.while(!q.IsEmpty())
 	node=q.Poll()
 	adjacents = node.Adjacents
