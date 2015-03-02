@@ -15,12 +15,11 @@ import (
 	"fmt"
 )
 
-var sMap memoTable[int]int
-
+var memoTable = make(map[int]int)
 func main() {
-	n := 8
+	n := 10
 	fibVal := findFibonacii(n)
-	fmt.Println("Fibonacii value of %d is ",n, fibVal)
+	fmt.Println("Fibonacii value of %d is ", n, fibVal)
 }
 
 func findFibonacii(n int) int {
@@ -30,8 +29,7 @@ func findFibonacii(n int) int {
 	if n == 1 {
 		return 1
 	}
-
-	if val, ok := memoTable[n]; ok {
+	if _, ok := memoTable[n]; ok {
 		return memoTable[n]
 	}
 	fibVal := findFibonacii(n-1) + findFibonacii(n-2)
@@ -39,4 +37,3 @@ func findFibonacii(n int) int {
 	return memoTable[n]
 
 }
-
