@@ -27,7 +27,7 @@ func main() {
 func findPossibleWays(n int) int {
 	//Base case
 	if n == 0 {
-		return 1
+		return n - 1
 	}
 	if n < 0 {
 		return 0
